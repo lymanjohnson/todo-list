@@ -4,18 +4,14 @@ const path = require("path");
 const mustacheExpress = require("mustache-express");
 const bodyParse = require('body-parser')
 const app = express();
+const todoList = require('data.js')
 
 app.engine("mustache", mustacheExpress());
-app.set("views", "./views")
-app.set("view engine", "mustache")
-
-const todos = [
-  "Wash the car",
-  "Make chili"
-];
+app.set("views", "./views");
+app.set("view engine", "mustache");
 
 app.get("/", function (req, res) {
-  res.render('index', { todos:todos });
+  res.render('index',todoList;
 });
 
 app.post("/", function (req, res) {
