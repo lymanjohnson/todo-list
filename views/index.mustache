@@ -14,8 +14,18 @@
      <link rel="stylesheet" type="text/css" href="style.css">
    </head>
    <body>
-     <p> It's running</p>
-     {{todos}}
+
+     {{#todos}}
+
+        {{#complete}}
+          <p>{{item}} ({{category}})</p>
+        {{/complete}}
+        {{^complete}}
+          <del><p>{{item}} ({{category}})<p></del>
+        {{/complete}}
+
+     {{/todos}}
+
 
 
    <script type="text/javascript" src="main.js"></script>
