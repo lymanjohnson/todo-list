@@ -14,19 +14,27 @@
      <link rel="stylesheet" type="text/css" href="style.css">
    </head>
    <body>
+     <form action="/" method="post">
+       <input type="text" name="newEntry">
+       <button type="submit">Add</button>
+     </form>
 
      {{#todos}}
-
-        {{#complete}}
-          <p>{{item}} ({{category}})</p>
-        {{/complete}}
-        {{^complete}}
-          <del><p>{{item}} ({{category}})<p></del>
-        {{/complete}}
-
+      <li class={{status}}>{{item}}</li>
      {{/todos}}
 
 
+<!--
+     <h2>To Do:</h2>
+     {{#todosMustache}}
+       <form id={{.}} action="/{{.}}" method="post">
+         <span>{{.}}</span><button type="submit">Finish</button>
+       </form>
+     {{/todosMustache}}
+     <h2>Done:</h2>
+     {{#doneMustache}}
+       <p>{{.}}</p>
+     {{/doneMustache}} -->
 
    <script type="text/javascript" src="main.js"></script>
    </body>

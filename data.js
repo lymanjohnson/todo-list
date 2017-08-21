@@ -1,11 +1,11 @@
 module.exports = {
   todos: [
 
-{"item":"Water Plants","category":"Home","complete":true},
-{"item":"Sweep Floor","category":"Home","complete":false},
-{"item":"Scrub bathtub","category":"Home","complete":false},
-{"item":"Buy groceries","category":"Shopping","complete":true},
-{"item":"Read the Seabridge Financial report","category":"Work","complete":false}
+{"item":"Water Plants","category":"Home","status":"complete"},
+{"item":"Sweep Floor","category":"Home","status":"incomplete"},
+{"item":"Scrub bathtub","category":"Home","status":"incomplete"},
+{"item":"Buy groceries","category":"Shopping","status":"incomplete"},
+{"item":"Read the Seabridge Financial report","category":"Work","status":"incomplete"}
 
 ]
 }
