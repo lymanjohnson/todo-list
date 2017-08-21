@@ -19,12 +19,27 @@ app.get("/", function (req, res) {
   res.render('index',todoList);
 });
 
+app.post("/", function(req,res) {
+  let newEntry = req.body.newEntry
+  fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
+    if (err){
+        console.log(err);
+    }
+    else {
+    listObject = JSON.parse(data); //now its an object
+    newEntryObject = "{'item':'"+newEntry"','category':'Home','status':'incomplete'}"
+    listObject.push(newEntryObject); //pushes the text to an array
+    json = JSON.stringify(obj); //converts back to json
+    fs.writeFile('data.json', json, 'utf8'); // writes to file
+}});
+
+res.redirect('/');//reloads page
+});
+
 // app.post("/", function(req, res)){
 //   let newEntry = req.body.newEntry
 //
 // }
-
-
 
 // app.post("/", function (req, res) {
 //   todoList.push(req.body.todo);
