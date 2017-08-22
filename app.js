@@ -3,7 +3,7 @@ const path = require("path");
 const mustacheExpress = require("mustache-express");
 const bodyParser = require('body-parser')
 const app = express();
-const todoList = require('./data.js');
+const todoList = require('./data.json');
 const fs = require('fs');
 
 app.engine("mustache", mustacheExpress());
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function (req, res) {
-  res.render('index',todoList);
+  res.render('index',todoList : todoList);
 });
 
 app.post("/", function(req,res) {
@@ -26,10 +26,10 @@ app.post("/", function(req,res) {
         console.log(err);
     }
     else {
-    listObject = JSON.parse(data); //now its an object
-    newEntryObject = "{'item':'"+newEntry"','category':'Home','status':'incomplete'}"
+    let listObject = JSON.parse(data); //now its an object
+    let newEntryObject = "{'item':'"+newEntry+"','category':'Home','status':'incomplete'}";
     listObject.push(newEntryObject); //pushes the text to an array
-    json = JSON.stringify(obj); //converts back to json
+    let json = JSON.stringify(obj); //converts back to json
     fs.writeFile('data.json', json, 'utf8'); // writes to file
 }});
 
