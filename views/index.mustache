@@ -19,22 +19,11 @@
        <button type="submit">Add</button>
      </form>
 
-     {{#todoArray}}
-      <li class={{status}}><button type="submit" name="{{item}}">X</button>{{item}}</li>
-     {{/todoArray}}
-
-
-<!--
-     <h2>To Do:</h2>
-     {{#todosMustache}}
-       <form id={{.}} action="/{{.}}" method="post">
-         <span>{{.}}</span><button type="submit">Finish</button>
-       </form>
-     {{/todosMustache}}
-     <h2>Done:</h2>
-     {{#doneMustache}}
-       <p>{{.}}</p>
-     {{/doneMustache}} -->
+     {{#todoMustache}}
+      <form id={{item}} action="/{{item}}" method="post">
+        <span class = "{{status}}">{{item}}</span><button type="submit">Finish</button>
+      </form>
+     {{/todoMustache}}
 
    <script type="text/javascript" src="script.js"></script>
    </body>
