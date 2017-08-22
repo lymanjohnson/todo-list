@@ -16,24 +16,46 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function (req, res) {
-  res.render('index',todoList : todoList);
-});
+  fs.readFile('data.json','utf8', function readFileCallback(err,data){
+    // console.log(data);
+  if (err) {
+    console.log(err);
+  }
+  else {
+    let todoArray = JSON.parse(data);
+    // let todoArray = obj.todos;
+    console.log(todoArray);
+    res.render('index', {todoArray : todoArray});
+  }
+})});
+
+
+/*fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
+    if (err){
+        console.log(err);
+    } else {
+    obj = JSON.parse(data);//Turns data.json into an object named obj
+    var todoarray = obj.todoArray; //declares makes the todoarray
+    var donearray = obj.doneArray; //declares makes the donearray
+    // this makes todosMustache the todoarray var
+    res.render('index', { todosMustache: todoarray,  doneMustache: donearray});
+*/
 
 app.post("/", function(req,res) {
   let newEntry = req.body.newEntry
   fs.readFile('data.json', 'utf8', function readFileCallback(err, data){
     if (err){
-        console.log(err);
+      console.log(err);
     }
     else {
-    let listObject = JSON.parse(data); //now its an object
-    let newEntryObject = "{'item':'"+newEntry+"','category':'Home','status':'incomplete'}";
-    listObject.push(newEntryObject); //pushes the text to an array
-    let json = JSON.stringify(obj); //converts back to json
-    fs.writeFile('data.json', json, 'utf8'); // writes to file
+      let listObject = JSON.parse(data); //now its an object
+      let newEntryObject = "{'item':'"+newEntry+"','category':'Home','status':'incomplete'}";
+      listObject.push(newEntryObject); //pushes the text to an array
+      let json = JSON.stringify(obj); //converts back to json
+      fs.writeFile('data.json', json, 'utf8'); // writes to file
 }});
 
-res.redirect('/');//reloads page
+  res.redirect('/');//reloads page
 });
 
 // app.post("/", function(req, res)){
@@ -57,5 +79,5 @@ res.redirect('/');//reloads page
 
 app.listen(3000, function () {
 	  console.log("Successfully started express application!");
-    console.log(todoList);
+    // console.log(todoList);
 });
